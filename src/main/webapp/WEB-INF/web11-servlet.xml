@@ -5,6 +5,7 @@
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
@@ -13,16 +14,25 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/tx
-        http://www.springframework.org/schema/tx/spring-tx.xsd">
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util.xsd">
 
     <context:component-scan base-package="com.bong.test"/>
     <tx:annotation-driven />
-    <mvc:annotation-driven/>
 
-    <!--
-        <mvc:annotation-driven/> 만 있으면 필요없음.
-    <bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter" />
-    -->
+    <!-- spring mvc 기본설정을 제공
+     Spring 3.0 의 DefaultAnnotationHandlerMapping 과 AnnotationMethodHandlerAdapter가
+     Spring 3.1 에선 @Deprecated 되고, 대신 RequestMappingHandlerMapping과 RequestMappingHandlerAdapter 로 바뀌었다.
+     -->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="objectMapper" ref="customObjectMapper" />
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+
 
     <bean id="dataSourceHSQL" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="org.hsqldb.jdbcDriver" />

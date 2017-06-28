@@ -3,8 +3,7 @@ package com.bong.test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -34,8 +33,28 @@ public class HelloWorldController {
     @ResponseBody
     public List<Board> list(Model model) {
 
-        boardRepo.save();
+        //boardRepo.save();
 
         return boardRepo.selectAll();
+    }
+
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    @ResponseBody
+    public String save(@RequestBody Board board) {
+
+        boardRepo.save(board);
+
+        return "{\"result\":\"success\"}";
+    }
+
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    @ResponseBody
+    public Board update(@RequestParam("seq") Integer seq) {
+
+        Board board = boardRepo.find(seq);
+
+        boardRepo.update(board);
+
+        return board;
     }
 }

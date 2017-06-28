@@ -34,18 +34,41 @@ public class BoardRepository {
         return result;
     }
 
-    @Transactional
     public void save() {
-        Session session = sessionFactory.getCurrentSession();
 
         Board board = new Board();
         //board.setSeq(1);
         board.setTitle("title111");
         board.setRegdate(new Date());
 
+        save(board);
+    }
+
+    @Transactional
+    public void save(Board board) {
+        Session session = sessionFactory.getCurrentSession();
+
         //Integer seq = (Integer)session.save(board);
         session.persist(board);
 
-        logger.debug("saved!! ");
+        logger.debug("persist!! ");
+    }
+
+    @Transactional
+    public void update(Board board) {
+
+        Session session = sessionFactory.getCurrentSession();
+
+        board.setTitle("update title!!");
+
+        session.update(board);
+
+        logger.debug("updated!! ");
+    }
+
+    public Board find(Integer seq) {
+        Session session = sessionFactory.openSession();
+
+        return (Board)session.get(Board.class, seq);
     }
 }
