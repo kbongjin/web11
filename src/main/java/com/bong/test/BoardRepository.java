@@ -34,7 +34,7 @@ public class BoardRepository {
         return result;
     }
 
-    //bong111 comment
+    //bong111 comment....
     public void save() {
 
         Board board = new Board();
