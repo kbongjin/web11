@@ -1,52 +1,37 @@
 package com.bong.test;
 
-import org.junit.*;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+/**
+ * Created by coupang on 2017. 7. 1..
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration("file:src/main/webapp/WEB-INF/web11-servlet.xml")
-public class HelloWorldControllerTest {
+public class SecondControllerTest {
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
+        System.out.printf("-------------------------------------------------------222 before");
     }
 
     @AfterClass
     public static void tearDownAfterClass() throws Exception {
-        System.out.printf("-------------------------------------------------------11111 after");
+
     }
 
     @Before
     public void setUp() throws Exception {
     }
 
-    @After
-    public void tearDown() throws Exception {
-
-    }
-
     @Test
     public void helloWorld() throws Exception {
     }
-
-    @Test
-    public void list() throws Exception {
-    }
-
-    @Test
-    public void save() throws Exception {
-    }
-
-    @Test
-    public void update() throws Exception {
-    }
-
-    @Test
-    public void saveAll() throws Exception {
-    }
-
 }
