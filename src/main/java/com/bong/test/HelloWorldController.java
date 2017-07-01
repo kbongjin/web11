@@ -14,6 +14,9 @@ public class HelloWorldController {
     @Autowired
     BoardRepository boardRepo;
 
+    @Autowired
+    BoardServiceImpl boardService;
+
     @RequestMapping("/helloWorld")
     @ResponseBody
     public Board helloWorld(Model model) {
@@ -21,7 +24,6 @@ public class HelloWorldController {
 
         Board board = new Board();
 
-        board.setSeq(1);
         board.setTitle("title");
         board.setRegdate(new Date());
 
@@ -56,5 +58,14 @@ public class HelloWorldController {
         boardRepo.update(board);
 
         return board;
+    }
+
+    @RequestMapping(value = "/saveAll", method = RequestMethod.POST)
+    @ResponseBody
+    public String saveAll(@RequestBody Board board) {
+
+        boardService.saveAll(board);
+
+        return "{\"result\":\"success saveAll\"}";
     }
 }

@@ -1,8 +1,6 @@
 package com.bong.test;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -15,18 +13,18 @@ public class Board {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer seq;
+    private Integer id;
 
     private String title;
     private String content;
     private Date regdate;
 
-    public Integer getSeq() {
-        return seq;
+    public Integer getId() {
+        return id;
     }
 
-    public void setSeq(Integer seq) {
-        this.seq = seq;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getTitle() {

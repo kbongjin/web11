@@ -52,7 +52,7 @@ public class BoardRepository {
         //Integer seq = (Integer)session.save(board);
         session.persist(board);
 
-        logger.debug("persist!! ");
+        logger.debug("board persisted!! ");
     }
 
     @Transactional
@@ -70,6 +70,10 @@ public class BoardRepository {
     public Board find(Integer seq) {
         Session session = sessionFactory.openSession();
 
-        return (Board)session.get(Board.class, seq);
+        Board board = (Board)session.get(Board.class, seq);
+
+        session.close();
+
+        return board;
     }
 }

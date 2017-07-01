@@ -35,10 +35,10 @@
 
 
     <bean id="dataSourceHSQL" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="org.hsqldb.jdbcDriver" />
-        <property name="url" value="jdbc:hsqldb:mem:mymemdb"/>
-        <property name="username" value="SA"/>
-        <property name="password" value=""/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="url" value="jdbc:mysql://localhost:3306/web11??useUnicode=true&amp;characterEncoding=UTF-8&amp;autoReconnect=true&amp;connectTimeout=5000&amp;socketTimeout=10000"/>
+        <property name="username" value="test1"/>
+        <property name="password" value="test1"/>
     </bean>
 
     <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
@@ -54,7 +54,7 @@
         </property>
         <property name="hibernateProperties">
             <props>
-                <prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
                 <!--
                 <prop key="hibernate.transaction.flush_before_completion">true</prop>
                 -->
