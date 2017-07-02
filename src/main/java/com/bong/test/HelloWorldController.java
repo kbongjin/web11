@@ -42,11 +42,11 @@ public class HelloWorldController {
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public String save(@RequestBody Board board) {
+    public Result save(@RequestBody Board board) {
 
         boardRepo.save(board);
 
-        return "{\"result\":\"success\"}";
+        return new Result(true);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
